@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useNavigate } from "react-router-dom";
+
+import "./App.scss";
 
 function App() {
+  const navigate = useNavigate();
+  const goTodoList = () => {
+    navigate("/todoList");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h3>Todo</h3>
+      <form className="appForm">
+        <input />
+        <input />
+        <div className="signBtn">
+          <button>Sign Up</button>
+          <button onClick={goTodoList}>Sign In</button>
+        </div>
+      </form>
     </div>
   );
 }
