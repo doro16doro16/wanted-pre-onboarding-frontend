@@ -4,12 +4,25 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TodoList from "./routes/TodoList";
-import TodoInput from "./routes/TodoInput";
-import Todo from "./routes/Todo";
+import AddTodo from "./routes/AddTodo";
+import { TodoProvider } from "./context/TodoContext";
+import styled from "@emotion/styled";
+import UpdateTodo from "./routes/UpdateTodo";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+const Section = styled.section`
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 600px;
+  color: white;
+  border-radius: 2rem;
+  padding: 15px 35px 0;
+`;
 
 const router = createBrowserRouter([
   {
@@ -17,19 +30,27 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/todoList/addTodo",
-    element: <TodoInput />,
-  },
-  {
     path: "/todoList",
     element: <TodoList />,
   },
+  {
+    path: "/todoList/addTodo",
+    element: <AddTodo />,
+  },
+  {
+    // path: "/todoList/updateTodo/:id",
+    path: "/todoList/updateTodo",
+    element: <UpdateTodo />,
+  },
 ]);
+
 root.render(
   <React.StrictMode>
-    <div className="container">
-      <RouterProvider router={router} />
-    </div>
+    <TodoProvider>
+      <Section>
+        <RouterProvider router={router} />
+      </Section>
+    </TodoProvider>
   </React.StrictMode>
 );
 
